@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ACADEASE | Login & Sign Up</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f3f6fc;
+            color: #1b2c4c;
+        }
+
+        .container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        .welcome {
+            width: 50%;
+            background: linear-gradient(135deg, #172b52, #3269e8);
+            color: white;
+            padding: 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .welcome h1 {
+            font-size: 42px;
+            line-height: 1.25;
+        }
+
+        .welcome p {
+            line-height: 1.8;
+            color: #e0e8ff;
+        }
+
+        .login-area {
+            width: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 30px;
+        }
+
+        .login-box {
+            width: 100%;
+            max-width: 400px;
+            background: white;
+            padding: 35px;
+            border-radius: 15px;
+            box-shadow: 0 10px 35px #152b5014;
+        }
+
+        .brand {
+            color: #3269e8;
+            font-size: 23px;
+            font-weight: bold;
+            margin-bottom: 25px;
+        }
+
+        h2 {
+            margin-bottom: 10px;
+        }
+
+        .description {
+            color: #71809a;
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            font-size: 13px;
+            font-weight: bold;
+            margin: 18px 0 8px;
+        }
+
+        input[type="email"],
+        input[type="password"],
+        input[type="text"] {
+            width: 100%;
+            padding: 13px;
+            border: 1px solid #dce3ef;
+            border-radius: 8px;
+            outline: none;
+            font-family: inherit;
+            font-size: 14px;
+        }
+
+        input:focus {
+            border-color: #3269e8;
+            box-shadow: 0 0 0 3px #3269e815;
+        }
+
+        .password-box {
+            position: relative;
+        }
+
+        .password-box input {
+            padding-right: 65px;
+        }
+
+        .password-box button {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            border: none;
+            background: none;
+            color: #3269e8;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .remember,
+        .terms {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            font-weight: normal;
+            color: #71809a;
+            font-size: 12px;
+            line-height: 1.6;
+        }
+
+        .remember input,
+        .terms input {
+            margin-top: 3px;
+            accent-color: #3269e8;
+        }
+
+        .remember {
+            align-items: center;
+        }
+
+        .remember input {
+            margin-top: 0;
+        }
+
+        .terms {
+            margin: 18px 0;
+        }
+
+        .login-button {
+            width: 100%;
+            padding: 14px;
+            margin-top: 15px;
+            border: none;
+            border-radius: 8px;
+            background: #3269e8;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background .2s;
+        }
+
+        .login-button:hover {
+            background: #2454c7;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 25px;
+            color: #3269e8;
+            text-decoration: none;
+            font-size: 13px;
+        }
+
+        .back-link:hover,
+        .switch-link:hover {
+            text-decoration: underline;
+        }
+
+        #message {
+            font-size: 13px;
+            line-height: 1.6;
+            overflow-wrap: anywhere;
+        }
+
+        .switch-text {
+            margin-top: 22px;
+            text-align: center;
+            font-size: 13px;
+            color: #71809a;
+            line-height: 1.8;
+        }
+
+        .switch-link {
+            color: #3269e8;
+            font-weight: bold;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .demo {
+            margin-top: 22px;
+            padding: 14px;
+            background: #f3f6fc;
+            border-radius: 8px;
+            font-size: 12px;
+            line-height: 1.8;
+            overflow-wrap: anywhere;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        .terms a {
+            color: #3269e8;
+            text-decoration: none;
+        }
+
+        .terms a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 700px) {
+            .container {
+                flex-direction: column;
+            }
+
+            .welcome,
+            .login-area {
+                width: 100%;
+            }
+
+            .welcome {
+                padding: 30px;
+            }
+
+            .welcome h1 {
+                font-size: 30px;
+            }
+
+            .login-area {
+                padding: 25px 16px;
+                align-items: flex-start;
+            }
+
+            .login-box {
+                padding: 25px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                transition: none !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+<div class="container">
+
+    <!-- LEFT WELCOME PANEL -->
+    <section class="welcome">
+        <h2>ACADEASE</h2>
+
+        <h1>Your Academic Services, Made Easy.</h1>
+
+        <p>
+            Access your student information, enrollment, grades,
+            and class schedule in one convenient place.
+        </p>
+    </section>
+
+    <!-- LOGIN AND SIGN UP PANEL -->
+    <section class="login-area">
+        <div class="login-box">
+
+            <a class="back-link" href="index.html">
+                ← Back to Home
+            </a>
+
+            <div class="brand">ACADEASE</div>
+
+            <!-- ================= LOGIN FORM ================= -->
+            <div id="loginSection">
+
+                <h2>Login to your account</h2>
+
+                <p class="description">
+                    Enter your student email and password to continue.
+                </p>
+
+                <form id="loginForm">
+
+                    <label for="loginEmail">Student Email</label>
+                    <input
+                        type="email"
+                        id="loginEmail"
+                        placeholder="Enter your email"
+                        autocomplete="username"
+                        required
+                    >
+
+                    <label for="loginPassword">Password</label>
+
+                    <div class="password-box">
+                        <input
+                            type="password"
+                            id="loginPassword"
+                            placeholder="Enter your password"
+                            autocomplete="current-password"
+                            required
+                        >
+
+                        <button
+                            type="button"
+                            class="toggle-password"
+                            data-target="loginPassword">
+                            Show
+                        </button>
+                    </div>
+
+                    <label class="remember">
+                        <input type="checkbox" id="remember">
+                        Remember me
+                    </label>
+
+                    <button type="submit" class="login-button">
+                        Login to ACADEASE →
+                    </button>
+
+                    <p id="loginMessage" role="status" aria-live="polite"></p>
+                </form>
+
+                <p class="switch-text">
+                    Don't have an account?
+                    <a href="#signup" class="switch-link" id="showSignup">
+                        Sign Up
+                    </a>
+                </p>
+
+                <div class="demo">
+                    <strong>DEMO ACCOUNT</strong><br>
+                    Email: student@acadease.test<br>
+                    Password: Student123!
+                </div>
+
+            </div>
+
+            <!-- ================= SIGN UP FORM ================= -->
+            <div id="signupSection" class="hidden">
+
+                <h2>Create your account</h2>
+
+                <p class="description">
+                    Register your student details to get started with ACADEASE.
+                </p>
+
+                <form id="signupForm">
+
+                    <label for="fullName">Full Name</label>
+                    <input
+                        type="text"
+                        id="fullName"
+                        placeholder="Enter your full name"
+                        autocomplete="name"
+                        minlength="2"
+                        required
+                    >
+
+                    <label for="studentId">Student ID</label>
+                    <input
+                        type="text"
+                        id="studentId"
+                        placeholder="Enter your student ID"
+                        required
+                    >
+
+                    <label for="signupEmail">Student Email</label>
+                    <input
+                        type="email"
+                        id="signupEmail"
+                        placeholder="Enter your email"
+                        autocomplete="email"
+                        required
+                    >
+
+                    <label for="signupPassword">Create Password</label>
+
+                    <div class="password-box">
+                        <input
+                            type="password"
+                            id="signupPassword"
+                            placeholder="At least 8 characters"
+                            autocomplete="new-password"
+                            minlength="8"
+                            required
+                        >
+
+                        <button
+                            type="button"
+                            class="toggle-password"
+                            data-target="signupPassword">
+                            Show
+                        </button>
+                    </div>
+
+                    <label for="confirmPassword">Confirm Password</label>
+
+                    <div class="password-box">
+                        <input
+                            type="password"
+                            id="confirmPassword"
+                            placeholder="Re-enter your password"
+                            autocomplete="new-password"
+                            minlength="8"
+                            required
+                        >
+
+                        <button
+                            type="button"
+                            class="toggle-password"
+                            data-target="confirmPassword">
+                            Show
+                        </button>
+                    </div>
+
+                    <label class="terms">
+                        <input type="checkbox" id="agreeTerms" required>
+                        <span>
+                            I agree to the ACADEASE terms and conditions
+                            and privacy policy.
+                        </span>
+                    </label>
+
+                    <button type="submit" class="login-button">
+                        Create Account →
+                    </button>
+
+                    <p id="signupMessage" role="status" aria-live="polite"></p>
+
+                </form>
+
+                <p class="switch-text">
+                    Already have an account?
+                    <a href="#login" class="switch-link" id="showLogin">
+                        Log In
+                    </a>
+                </p>
+
+            </div>
+
+        </div>
+    </section>
+
+</div>
+
+<script>
+    // Existing demo login credentials.
+    const demoEmail = "student@acadease.test";
+    const demoPassword = "Student123!";
+
+    const loginSection = document.getElementById("loginSection");
+    const signupSection = document.getElementById("signupSection");
+
+    // Switch between login and sign-up forms.
+    document.getElementById("showSignup").addEventListener("click", function(event) {
+        event.preventDefault();
+
+        loginSection.classList.add("hidden");
+        signupSection.classList.remove("hidden");
+
+        document.getElementById("signupMessage").textContent = "";
+    });
+
+    document.getElementById("showLogin").addEventListener("click", function(event) {
+        event.preventDefault();
+
+        signupSection.classList.add("hidden");
+        loginSection.classList.remove("hidden");
+
+        document.getElementById("loginMessage").textContent = "";
+    });
+
+    // Show/hide password buttons.
+    document.querySelectorAll(".toggle-password").forEach(function(button) {
+        button.addEventListener("click", function() {
+            const input = document.getElementById(this.dataset.target);
+
+            if (input.type === "password") {
+                input.type = "text";
+                this.textContent = "Hide";
+            } else {
+                input.type = "password";
+                this.textContent = "Show";
+            }
+        });
+    });
+
+    // LOGIN FORM
+    document.getElementById("loginForm").addEventListener("submit", function(event) {
+        event.preventDefault();
+
+        const email = document.getElementById("loginEmail")
+            .value.trim().toLowerCase();
+
+        const password = document.getElementById("loginPassword").value;
+        const message = document.getElementById("loginMessage");
+
+        if (email === demoEmail && password === demoPassword) {
+            message.style.color = "green";
+            message.textContent = "Login successful! Opening dashboard...";
+
+            sessionStorage.setItem("acadeaseLoggedIn", "true");
+
+            setTimeout(function() {
+                window.location.href = "dashboard.html";
+            }, 500);
+
+        } else {
+            message.style.color = "#d34242";
+            message.textContent =
+                "Incorrect email or password. Please try again.";
+        }
+    });
+
+    // SIGN UP FORM
+    document.getElementById("signupForm").addEventListener("submit", function(event) {
+        event.preventDefault();
+
+        const fullName = document.getElementById("fullName").value.trim();
+        const studentId = document.getElementById("studentId").value.trim();
+        const email = document.getElementById("signupEmail")
+            .value.trim().toLowerCase();
+
+        const password = document.getElementById("signupPassword").value;
+        const confirmPassword = document.getElementById("confirmPassword").value;
+
+        const message = document.getElementById("signupMessage");
+
+        if (password.length < 8 ) {
+            message.style.color = "#d34242";
+            message.textContent =
+                "Your password must contain at least 8 characters.";
+            return;
+        }
+
+        if (password !== confirmPassword) {
+            message.style.color = "#d34242";
+            message.textContent = "Your passwords do not match.";
+            return;
+        }
+
+        if (!document.getElementById("agreeTerms").checked) {
+            message.style.color = "#d34242";
+            message.textContent =
+                "Please agree to the terms and conditions.";
+            return;
+        }
+
+        /*
+          This is a front-end demonstration only.
+          A backend is required to securely create student accounts.
+        */
+
+        message.style.color = "#2454c7";
+        message.textContent =
+            "Your details are valid, " + fullName +
+            "! Account registration is not connected yet. " +
+            "Connect a backend to save your account securely.";
+
+        // Prevent unused-variable warnings in some editors.
+        console.log("Sign-up form validated for:", {
+            fullName: fullName,
+            studentId: studentId,
+            email: email
+        });
+    });
+</script>
+
+</body>
+</html>

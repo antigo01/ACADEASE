@@ -1,0 +1,341 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ACADEASE - Announcements</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6fa;
+            color: #172b4d;
+        }
+
+        /* SIDEBAR */
+        .sidebar {
+            width: 250px;
+            height: 100vh;
+            background: #12284e;
+            color: white;
+            padding: 25px 15px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            overflow-y: auto;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 35px;
+            padding: 0 8px;
+        }
+
+        .logo-icon {
+            width: 44px;
+            height: 44px;
+            background: white;
+            color: #12284e;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+
+        .logo h2 {
+            font-size: 20px;
+            margin-bottom: 5px;
+        }
+
+        .logo small {
+            font-size: 11px;
+            white-space: nowrap;
+        }
+
+        .menu-title {
+            color: #a9c4ef;
+            font-size: 11px;
+            margin: 0 12px 10px;
+        }
+
+        nav a {
+            display: block;
+            padding: 13px 12px;
+            margin-bottom: 5px;
+            color: #f1f5ff;
+            text-decoration: none;
+            font-size: 15px;
+            border-radius: 10px;
+            transition: background 0.2s;
+        }
+
+        nav a:hover,
+        nav a.active {
+            background: #294873;
+        }
+
+        /* MAIN CONTENT */
+        .content {
+            margin-left: 250px;
+            padding: 35px;
+        }
+
+        .page-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .page-header h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .page-header p {
+            color: #64748b;
+            font-size: 14px;
+        }
+
+        /* ANNOUNCEMENT CARDS */
+        .announcement-list {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+
+        .announcement-card {
+            background: white;
+            padding: 24px;
+            border-radius: 10px;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.04);
+        }
+
+        .category {
+            display: inline-block;
+            background: #e5edff;
+            color: #244d86;
+            padding: 6px 10px;
+            border-radius: 5px;
+            font-size: 12px;
+            margin-bottom: 12px;
+        }
+
+        .announcement-card h2 {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .announcement-card p {
+            color: #64748b;
+            line-height: 1.6;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+
+        .announcement-card small {
+            color: #94a3b8;
+            font-size: 12px;
+        }
+
+        /* MOBILE RESPONSIVE */
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 200px;
+                padding: 20px 10px;
+            }
+
+            .content {
+                margin-left: 200px;
+                padding: 20px 15px;
+            }
+
+            .logo h2 {
+                font-size: 16px;
+            }
+
+            .logo small {
+                font-size: 9px;
+            }
+
+            nav a {
+                font-size: 13px;
+            }
+
+            .page-header h1 {
+                font-size: 23px;
+            }
+
+            .announcement-card {
+                padding: 18px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .sidebar {
+                width: 155px;
+                padding: 20px 8px;
+            }
+
+            .logo {
+                gap: 6px;
+                padding: 0 2px;
+            }
+
+            .logo-icon {
+                width: 30px;
+                height: 30px;
+                font-size: 17px;
+            }
+
+            .logo h2 {
+                font-size: 13px;
+            }
+
+            .logo small {
+                font-size: 8px;
+            }
+
+            nav a {
+                padding: 12px 7px;
+                font-size: 11px;
+            }
+
+            .content {
+                margin-left: 155px;
+                padding: 18px 10px;
+            }
+
+            .page-header h1 {
+                font-size: 20px;
+            }
+
+            .page-header p {
+                font-size: 12px;
+            }
+
+            .announcement-card h2 {
+                font-size: 15px;
+            }
+
+            .announcement-card p {
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+        <div class="logo">
+            <div class="logo-icon">🎓</div>
+
+            <div>
+                <h2>ACADEASE</h2>
+                <small>Student Services Portal</small>
+            </div>
+        </div>
+
+        <p class="menu-title">MAIN MENU</p>
+
+        <nav>
+            <a href="dashboard.html">⌂ Dashboard</a>
+
+            <a href="registrar.html">
+                ▤ Registrar Services
+            </a>
+
+            <a href="appointments.html">
+                ▦ Appointments
+            </a>
+
+            <a href="announcement.html" class="active">
+                ⊙ Announcements
+            </a>
+
+            <a href="requests.html">
+                ☷ My Requests
+            </a>
+
+            <a href="student-information.html">
+                ♙ Student Information
+            </a>
+        </nav>
+
+    </aside>
+
+    <!-- ANNOUNCEMENTS CONTENT -->
+    <main class="content">
+
+        <header class="page-header">
+            <div>
+                <h1>Announcements</h1>
+                <p>
+                    Stay updated with the latest school news and updates.
+                </p>
+            </div>
+        </header>
+
+        <section class="announcement-list">
+
+            <article class="announcement-card">
+                <span class="category">Enrollment</span>
+
+                <h2>Enrollment Announcement</h2>
+
+                <p>
+                    Please check the registrar's office for the latest
+                    enrollment schedules and requirements.
+                </p>
+
+                <small>October 29, 2026</small>
+            </article>
+
+            <article class="announcement-card">
+                <span class="category">Advisory</span>
+
+                <h2>Important Student Advisory</h2>
+
+                <p>
+                    Students are advised to check their student portal
+                    regularly for important updates and reminders.
+                </p>
+
+                <small>October 25, 2026</small>
+            </article>
+
+            <article class="announcement-card">
+                <span class="category">Events</span>
+
+                <h2>Upcoming School Activities</h2>
+
+                <p>
+                    Stay tuned for upcoming campus activities,
+                    programs, and student events.
+                </p>
+
+                <small>October 20, 2026</small>
+            </article>
+
+        </section>
+
+    </main>
+
+</body>
+</html>

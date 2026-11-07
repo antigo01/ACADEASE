@@ -1,0 +1,1291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ACADEASE - Student Services</title>
+
+<style>
+:root {
+    --navy: #10254b;
+    --blue: #2458d3;
+    --bg: #f5f7fb;
+    --white: #ffffff;
+    --text: #18253d;
+    --muted: #71809a;
+    --border: #e4eaf3;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+}
+
+button, input, select, textarea {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+.app {
+    display: grid;
+    grid-template-columns: 245px 1fr;
+    min-height: 100vh;
+}
+
+.sidebar {
+    background: var(--navy);
+    color: white;
+    padding: 25px 15px;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 0 8px 35px;
+}
+.brand-icon {
+    width: 43px;
+    height: 43px;
+    border-radius: 13px;
+    background: white;
+    color: var(--blue);
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+}
+
+.brand-icon img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.brand h2 {
+    margin: 0;
+    font-size: 20px;
+}
+
+.brand small {
+    color: #b9c9e7;
+    font-size: 11px;
+}
+
+.nav-title {
+    color: #91a8d1;
+    font-size: 11px;
+    margin: 20px 12px 10px;
+    text-transform: uppercase;
+}
+
+.nav button {
+    width: 100%;
+    padding: 13px;
+    margin-bottom: 5px;
+    border: 0;
+    border-radius: 10px;
+    background: transparent;
+    color: #c9d5eb;
+    text-align: left;
+}
+
+.nav button:hover,
+.nav button.active {
+    background: #24416f;
+    color: white;
+}
+
+.main {
+    min-width: 0;
+}
+
+.topbar {
+    height: 75px;
+    background: white;
+    border-bottom: 1px solid var(--border);
+    padding: 0 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.topbar strong {
+    font-size: 14px;
+}
+
+.avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #dce8ff;
+    color: var(--blue);
+    display: grid;
+    place-items: center;
+    font-weight: bold;
+}
+
+.content {
+    max-width: 1450px;
+    margin: auto;
+    padding: 30px;
+}
+
+.heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.heading h1 {
+    font-size: 30px;
+    margin: 0 0 8px;
+}
+
+.heading p {
+    color: var(--muted);
+    font-size: 14px;
+    margin: 0;
+    line-height: 1.5;
+}
+
+.primary, .secondary {
+    padding: 12px 16px;
+    border-radius: 10px;
+    border: 0;
+    font-weight: bold;
+    font-size: 13px;
+}
+
+.primary {
+    background: var(--blue);
+    color: white;
+}
+
+.primary:hover {
+    background: #1748bd;
+}
+
+.secondary {
+    background: white;
+    color: var(--navy);
+    border: 1px solid var(--border);
+}
+
+.grid {
+    display: grid;
+    gap: 18px;
+}
+
+.stats {
+    grid-template-columns: repeat(4, 1fr);
+    margin-bottom: 22px;
+}
+
+.card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 20px;
+    margin-bottom: 18px;
+    box-shadow: 0 8px 25px rgba(23, 43, 77, 0.04);
+    min-width: 0;
+}
+
+.stat-icon {
+    width: 42px;
+    height: 42px;
+    background: #edf4ff;
+    color: var(--blue);
+    display: grid;
+    place-items: center;
+    border-radius: 12px;
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+
+.stat-number {
+    font-size: 27px;
+    font-weight: bold;
+}
+
+.stat-label {
+    color: var(--muted);
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+.columns {
+    grid-template-columns: 1.5fr 1fr;
+    align-items: start;
+}
+
+.card h2 {
+    font-size: 17px;
+    margin: 0 0 18px;
+}
+
+.profile {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: #eff5ff;
+    border-radius: 13px;
+    padding: 16px;
+    margin-bottom: 20px;
+}
+
+.profile strong {
+    display: block;
+    margin-bottom: 6px;
+}
+
+.profile p {
+    margin: 0;
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.6;
+}
+
+.quick-grid {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.quick {
+    border: 1px solid var(--border);
+    background: white;
+    border-radius: 12px;
+    padding: 15px;
+    text-align: left;
+}
+
+.quick:hover, .service:hover {
+    border-color: #9bb8ff;
+    transform: translateY(-2px);
+}
+
+.quick strong {
+    display: block;
+    font-size: 13px;
+    margin-bottom: 6px;
+}
+
+.quick small {
+    color: var(--muted);
+    font-size: 11px;
+}
+
+.service-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.service {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 15px;
+    padding: 20px;
+    transition: .2s;
+    cursor: pointer;
+}
+
+.service h3 {
+    font-size: 15px;
+}
+
+.service p {
+    font-size: 12px;
+    line-height: 1.6;
+    color: var(--muted);
+}
+
+.service span {
+    color: var(--blue);
+    font-weight: bold;
+    font-size: 12px;
+}
+
+.field {
+    display: grid;
+    gap: 7px;
+    margin-bottom: 16px;
+}
+
+.field label {
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.field input,
+.field select,
+.field textarea,
+.search {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #dce4ef;
+    border-radius: 9px;
+    background: white;
+    color: var(--text);
+}
+
+.field textarea {
+    min-height: 90px;
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+    outline: 2px solid #b8ccff;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0 15px;
+}
+
+.full {
+    grid-column: 1 / -1;
+}
+
+.toolbar {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 18px;
+}
+
+.search {
+    max-width: 350px;
+}
+
+.table-wrap {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    white-space: nowrap;
+}
+
+th, td {
+    padding: 14px 10px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+    font-size: 12px;
+}
+
+th {
+    color: var(--muted);
+    background: #fafbfd;
+}
+
+.status {
+    display: inline-block;
+    background: #fff2dd;
+    color: #a56518;
+    padding: 6px 9px;
+    border-radius: 20px;
+    font-size: 10px;
+    font-weight: bold;
+}
+
+.status.Completed {
+    background: #e5f7ef;
+    color: #16835b;
+}
+
+.status.Processing {
+    background: #eaf1ff;
+    color: var(--blue);
+}
+
+.status.Rejected {
+    background: #ffeded;
+    color: #bd424c;
+}
+
+.announcement {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 12px;
+}
+
+.announcement h3 {
+    font-size: 14px;
+    margin: 0 0 8px;
+}
+
+.announcement p {
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.7;
+}
+
+.notice {
+    background: #edf5ff;
+    color: #31558e;
+    padding: 14px;
+    border-radius: 10px;
+    font-size: 12px;
+    line-height: 1.6;
+    margin-bottom: 18px;
+}
+
+.toast {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: var(--navy);
+    color: white;
+    padding: 15px 20px;
+    border-radius: 10px;
+    z-index: 10;
+    font-size: 13px;
+}
+
+.empty {
+    color: var(--muted);
+    text-align: center;
+    padding: 25px;
+}
+
+.hidden {
+    display: none !important;
+}
+
+@media (max-width: 1000px) {
+    .stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .service-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 760px) {
+    .app {
+        grid-template-columns: 1fr;
+    }
+
+    .sidebar {
+        padding: 16px;
+    }
+
+    .nav {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 4px;
+    }
+
+    .nav button {
+        font-size: 12px;
+    }
+
+    .content {
+        padding: 18px 14px;
+    }
+
+    .topbar {
+        padding: 0 16px;
+    }
+
+    .columns {
+        grid-template-columns: 1fr;
+    }
+
+    .heading h1 {
+        font-size: 24px;
+    }
+}
+
+@media (max-width: 440px) {
+    .service-grid,
+    .quick-grid,
+    .stats,
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .full {
+        grid-column: auto;
+    }
+
+    .heading {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+    <aside class="sidebar">
+        <div class="brand">
+            <div class="brand-icon">
+    <img src="logo2.jpg"
+         alt="ACADEASE graduation-cap logo">
+</div>
+            <div>
+                <h2>ACADEASE</h2>
+                <small>Student Services Portal</small>
+            </div>
+        </div>
+
+        <div class="nav-title">Main Menu</div>
+
+        <nav class="nav">
+            <button class="active" data-page="dashboard">⌂ Dashboard</button>
+            <button onclick="window.location.href='registrar.html'">▤ Registrar Services</button>
+            <button data-page="appointments">▦ Appointments</button>
+            <button onclick="window.location.href='announcement.html'"> ◉ Announcements </button>
+            <button data-page="requests">☷ My Requests</button>
+            <button data-page="profile">♙ Student Information</button>
+        </nav>
+    </aside>
+
+    <main class="main">
+
+        <header class="topbar">
+            <strong id="pageLabel">Student Portal / Dashboard</strong>
+            <div class="avatar">ST</div>
+        </header>
+
+        <div class="content" id="content"></div>
+
+    </main>
+</div>
+
+<script>
+const content = document.getElementById("content");
+
+const student = {
+    name: "Student Name",
+    id: "2026-00123",
+    course: "BS Information Technology",
+    year: "Third Year",
+    email: "student@example.com"
+};
+
+let currentPage = "dashboard";
+let selectedService = "Certificate of Enrollment";
+
+let requests = [
+    {
+        ref: "REQ-001",
+        title: "Certificate of Enrollment",
+        date: "October 10, 2026",
+        purpose: "Scholarship application",
+        status: "Processing"
+    },
+    {
+        ref: "REQ-002",
+        title: "Transcript of Records",
+        date: "October 06, 2026",
+        purpose: "Personal copy",
+        status: "Completed"
+    }
+];
+
+let appointments = [];
+
+const services = [
+    {
+        icon: "▤",
+        title: "Certificate of Enrollment",
+        description: "Proof that you are currently enrolled."
+    },
+    {
+        icon: "▧",
+        title: "Transcript of Records",
+        description: "Request a copy of your academic records."
+    },
+    {
+        icon: "▣",
+        title: "Certificate of Grades",
+        description: "Request a copy of your grades."
+    },
+    {
+        icon: "♙",
+        title: "Good Moral Certificate",
+        description: "Request a certificate of good moral character."
+    },
+    {
+        icon: "▤",
+        title: "Student Records Update",
+        description: "Request corrections to your student information."
+    },
+    {
+        icon: "?",
+        title: "Other Registrar Concern",
+        description: "Send other academic concerns to the registrar."
+    }
+];
+
+const announcements = [
+    {
+        title: "Second Semester Enrollment",
+        date: "October 12, 2026",
+        description: "Students should prepare their requirements for the upcoming enrollment period."
+    },
+    {
+        title: "Final Examination Schedule",
+        date: "October 09, 2026",
+        description: "Please coordinate with your instructors regarding examination schedules and rooms."
+    },
+    {
+        title: "Registrar Office Advisory",
+        date: "October 05, 2026",
+        description: "Bring your student ID and supporting documents when visiting the Registrar Office."
+    }
+];
+
+function showToast(message) {
+    const oldToast = document.querySelector(".toast");
+
+    if (oldToast) {
+        oldToast.remove();
+    }
+
+    const toast = document.createElement("div");
+    toast.className = "toast";
+    toast.textContent = message;
+
+    document.body.appendChild(toast);
+
+    setTimeout(() => toast.remove(), 3000);
+}
+
+function goToPage(page) {
+    currentPage = page;
+
+    document.querySelectorAll("[data-page]").forEach(button => {
+        button.classList.toggle(
+            "active",
+            button.dataset.page === page
+        );
+    });
+
+    const labels = {
+        dashboard: "Dashboard",
+        services: "Registrar Services",
+        appointments: "Appointments",
+        announcements: "Announcements",
+        requests: "My Requests",
+        profile: "Student Information",
+        requestForm: "Request a Service"
+    };
+
+    document.getElementById("pageLabel").textContent =
+        "Student Portal / " + (labels[page] || page);
+
+    renderPage();
+    window.scrollTo(0, 0);
+}
+
+function renderPage() {
+    if (currentPage === "dashboard") renderDashboard();
+    if (currentPage === "services") renderServices();
+    if (currentPage === "requestForm") renderRequestForm();
+    if (currentPage === "appointments") renderAppointments();
+    if (currentPage === "announcements") renderAnnouncements();
+    if (currentPage === "requests") renderRequests();
+    if (currentPage === "profile") renderProfile();
+}
+
+function renderDashboard() {
+    content.innerHTML = `
+        <div class="heading">
+            <div>
+                <h1>Welcome, ${student.name.split(" ")[0]}! 👋</h1>
+                <p>Here is an overview of your academic services.</p>
+            </div>
+            <button class="primary" data-page="services">
+                + New Request
+            </button>
+        </div>
+
+        <div class="grid stats">
+            <div class="card">
+                <div class="stat-icon">▤</div>
+                <div class="stat-number">${requests.length}</div>
+                <div class="stat-label">Document Requests</div>
+            </div>
+
+            <div class="card">
+                <div class="stat-icon">◷</div>
+                <div class="stat-number">
+                    ${requests.filter(r => r.status === "Processing").length}
+                </div>
+                <div class="stat-label">In Progress</div>
+            </div>
+
+            <div class="card">
+                <div class="stat-icon">▦</div>
+                <div class="stat-number">${appointments.length}</div>
+                <div class="stat-label">Appointments</div>
+            </div>
+
+            <div class="card">
+                <div class="stat-icon">◉</div>
+                <div class="stat-number">${announcements.length}</div>
+                <div class="stat-label">Announcements</div>
+            </div>
+        </div>
+
+        <div class="grid columns">
+            <div>
+                <section class="card">
+                    <h2>Student Information</h2>
+
+                    <div class="profile">
+                        <div class="avatar">${student.name.split(" ").map(n => n[0]).join("").slice(0, 2)}</div>
+                        <div>
+                            <strong>${student.name}</strong>
+                            <p>${student.id}<br>${student.course}<br>${student.year}</p>
+                        </div>
+                    </div>
+
+                    <h2>Quick Services</h2>
+
+                    <div class="grid quick-grid">
+                        <button class="quick" data-page="services">
+                            <strong>▤ Request Documents</strong>
+                            <small>Certificates and records</small>
+                        </button>
+
+                        <button class="quick" data-page="appointments">
+                            <strong>▦ Book Appointment</strong>
+                            <small>Schedule a registrar visit</small>
+                        </button>
+
+                        <button class="quick" data-page="announcements">
+                            <strong>◉ Announcements</strong>
+                            <small>Latest campus updates</small>
+                        </button>
+
+                        <button class="quick" data-page="requests">
+                            <strong>☷ Track Requests</strong>
+                            <small>Check your request status</small>
+                        </button>
+                    </div>
+                </section>
+
+                <section class="card">
+                    <h2>Recent Requests</h2>
+                    ${requestTable(requests.slice(0, 4))}
+                </section>
+            </div>
+
+            <div>
+                <section class="card">
+                    <h2>Upcoming Appointments</h2>
+                    ${
+                        appointments.length
+                        ? appointments.map(a => `
+                            <p><strong>${a.purpose}</strong></p>
+                            <p>${a.date} at ${a.time}</p>
+                            <hr>
+                        `).join("")
+                        : `<p style="color:var(--muted);font-size:13px">
+                            You have no appointments yet.
+                           </p>`
+                    }
+                    <button class="secondary" data-page="appointments">
+                        + Book Appointment
+                    </button>
+                </section>
+
+                <section class="card">
+                    <h2>Latest Announcements</h2>
+                    ${announcements.slice(0, 3).map(a => `
+                        <div style="margin-bottom:16px">
+                            <strong style="font-size:13px">${a.title}</strong>
+                            <p style="color:var(--muted);font-size:12px;line-height:1.6">
+                                ${a.date}
+                            </p>
+                        </div>
+                    `).join("")}
+                    <button class="secondary"
+    onclick="window.location.href='announcement.html'"> View All
+                             </button>
+                </section>
+            </div>
+        </div>
+    `;
+}
+
+function renderServices() {
+    content.innerHTML = `
+        <div class="heading">
+            <div>
+                <h1>Registrar Services</h1>
+                <p>Choose a service to submit your academic request.</p>
+            </div>
+        </div>
+
+        <div class="toolbar">
+            <input class="search" id="serviceSearch"
+                placeholder="Search services...">
+        </div>
+
+        <div class="grid service-grid" id="serviceGrid">
+            ${serviceCards(services)}
+        </div>
+    `;
+}
+
+function serviceCards(items) {
+    return items.map(service => `
+        <article class="service" data-service="${service.title}">
+            <div class="stat-icon">${service.icon}</div>
+            <h3>${service.title}</h3>
+            <p>${service.description}</p>
+            <span>Request Service →</span>
+        </article>
+    `).join("");
+}
+
+function renderRequestForm() {
+    content.innerHTML = `
+        <div class="heading">
+            <div>
+                <h1>Request a Service</h1>
+                <p>Complete the form to submit your request.</p>
+            </div>
+        </div>
+
+        <section class="card">
+            <div class="notice">
+                This is a front-end demonstration. Requests are saved
+                temporarily in the browser session only.
+            </div>
+
+            <form id="requestForm">
+                <div class="form-grid">
+                    <div class="field full">
+                        <label for="serviceType">Service *</label>
+                        <select id="serviceType" required>
+                            ${services.map(s => `
+                                <option ${s.title === selectedService ? "selected" : ""}>
+                                    ${s.title}
+                                </option>
+                            `).join("")}
+                        </select>
+                    </div>
+
+                    <div class="field">
+                        <label>Full Name</label>
+                        <input value="${student.name}" readonly>
+                    </div>
+
+                    <div class="field">
+                        <label>Student ID</label>
+                        <input value="${student.id}" readonly>
+                    </div>
+
+                    <div class="field">
+                        <label>Course</label>
+                        <input value="${student.course}" readonly>
+                    </div>
+
+                    <div class="field">
+                        <label for="purpose">Purpose *</label>
+                        <select id="purpose" required>
+                            <option value="">Select purpose</option>
+                            <option>Scholarship application</option>
+                            <option>Employment requirement</option>
+                            <option>Personal copy</option>
+                            <option>Transfer to another school</option>
+                            <option>Other</option>
+                        </select>
+                    </div>
+
+                    <div class="field full">x  
+                        <label for="remarks">Additional Remarks</label>
+                        <textarea id="remarks"
+                            placeholder="Enter additional details..."></textarea>
+                    </div>
+                </div>
+
+                <button class="primary" type="submit">
+                    Submit Request →
+                </button>
+
+                <button class="secondary" type="button" data-page="services">
+                    Cancel
+                </button>
+            </form>
+        </section>
+    `;
+}
+
+function renderAppointments() {
+    content.innerHTML = `
+        <div class="heading">
+            <div>
+                <h1>Appointments</h1>
+                <p>Schedule a visit for your academic concerns.</p>
+            </div>
+        </div>
+
+        <section class="card">
+            <form id="appointmentForm">
+                <div class="field">
+                    <label for="appointmentDate">Appointment Date *</label>
+                    <input type="date" id="appointmentDate"
+                        min="${new Date().toISOString().split("T")[0]}" required>
+                </div>
+
+                <div class="field">
+                    <label for="appointmentTime">Available Time *</label>
+                    <select id="appointmentTime" required>
+                        <option value="">Select time</option>
+                        <option>9:00 AM</option>
+                        <option>10:00 AM</option>
+                        <option>11:00 AM</option>
+                        <option>1:00 PM</option>
+                        <option>2:00 PM</option>
+                        <option>3:00 PM</option>
+                    </select>
+                </div>
+
+                <div class="field">
+                    <label for="appointmentPurpose">Purpose *</label>
+                    <select id="appointmentPurpose" required>
+                        <option value="">Select purpose</option>
+                        <option>Registrar Consultation</option>
+                        <option>Document Follow-up</option>
+                        <option>Student Records Concern</option>
+                        <option>Enrollment Inquiry</option>
+                        <option>Other Academic Concern</option>
+                    </select>
+                </div>
+
+                <button class="primary" type="submit">
+                    Confirm Appointment →
+                </button>
+            </form>
+        </section>
+
+        <section class="card">
+            <h2>My Appointments</h2>
+            ${
+                appointments.length
+                ? appointments.map(a => `
+                    <div style="padding:12px 0;border-bottom:1px solid var(--border)">
+                        <strong>${a.purpose}</strong>
+                        <p>${a.date} · ${a.time}</p>
+                        <span class="status">${a.status}</span>
+                    </div>
+                `).join("")
+                : <p class="empty">No appointments booked yet.</p>
+            }
+        </section>
+    `;
+}
+
+function renderAnnouncements() {
+    content.innerHTML = `
+        <div class="heading">
+            <div>
+                <h1>Announcements</h1>
+                <p>Stay updated with academic news and notices.</p>
+            </div>
+        </div>
+
+        <div class="toolbar">
+            <input class="search" id="announcementSearch"
+                placeholder="Search announcements...">
+        </div>
+
+        <div id="announcementList">
+            ${announcementCards(announcements)}
+        </div>
+    `;
+}
+
+function announcementCards(items) {
+    return items.length
+        ? items.map(a => `
+            <section class="card announcement">
+                <div class="stat-icon">◉</div>
+                <div>
+                    <h3>${a.title}</h3>
+                    <small style="color:var(--blue)">${a.date}</small>
+                    <p>${a.description}</p>
+                </div>
+            </section>
+        `).join("")
+        : <div class="card empty">No announcements found.</div>;
+}
+
+function renderRequests() {
+    content.innerHTML = `
+        <div class="heading">
+            <div>
+                <h1>My Requests</h1>
+                <p>Track your document request status.</p>
+            </div>
+            <button class="primary" data-page="services">
+                + New Request
+            </button>
+        </div>
+
+        <section class="card">
+            <div class="toolbar">
+                <input class="search" id="requestSearch"
+                    placeholder="Search requests...">
+                <select id="statusFilter" class="search">
+                    <option>All</option>
+                    <option>Submitted</option>
+                    <option>Processing</option>
+                    <option>Completed</option>
+                    <option>Rejected</option>
+                </select>
+            </div>
+
+            <div id="requestList">
+                ${requestTable(requests)}
+            </div>
+        </section>
+    `;
+}
+
+function requestTable(items) {
+    if (!items.length) {
+        return <div class="empty">No requests found.</div>;
+    }
+
+    return `
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Reference</th>
+                        <th>Document</th>
+                        <th>Date</th>
+                        <th>Purpose</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    ${items.map(r => `
+                        <tr>
+                            <td><strong>${r.ref}</strong></td>
+                            <td>${r.title}</td>
+                            <td>${r.date}</td>
+                            <td>${r.purpose}</td>
+                            <td>
+                                <span class="status ${r.status}">
+                                    ${r.status}
+                                </span>
+                            </td>
+                        </tr>
+                    `).join("")}
+                </tbody>
+            </table>
+        </div>
+    `;
+}
+
+function renderProfile() {
+    content.innerHTML = `
+        <div class="heading">
+            <div>
+                <h1>Student Information</h1>
+                <p>View and update your student profile.</p>
+            </div>
+        </div>
+
+        <section class="card">
+            <form id="profileForm">
+                <div class="form-grid">
+                    <div class="field">
+                        <label for="studentName">Full Name *</label>
+                        <input id="studentName" value="${student.name}" required>
+                    </div>
+
+                    <div class="field">
+                        <label>Student ID</label>
+                        <input value="${student.id}" readonly>
+                    </div>
+
+                    <div class="field">
+                        <label for="studentEmail">Email *</label>
+                        <input type="email" id="studentEmail"
+                            value="${student.email}" required>
+                    </div>
+
+                    <div class="field">
+                        <label for="studentCourse">Program</label>
+                        <select id="studentCourse">
+                            <option>BS Information Technology</option>
+                            <option>BS Computer Science</option>
+                            <option>BS Information Systems</option>
+                            <option>BS Computer Engineering</option>
+                        </select>
+                    </div>
+
+                    <div class="field">
+                        <label for="studentYear">Year Level</label>
+                        <select id="studentYear">
+                            <option>First Year</option>
+                            <option>Second Year</option>
+                            <option selected>Third Year</option>
+                            <option>Fourth Year</option>
+                        </select>
+                    </div>
+                </div>
+
+                <button class="primary" type="submit">
+                    Save Changes
+                </button>
+            </form>
+        </section>
+    `;
+}
+
+/* Navigation */
+document.addEventListener("click", function(event) {
+    const pageButton = event.target.closest("[data-page]");
+
+    if (pageButton) {
+        goToPage(pageButton.dataset.page);
+        return;
+    }
+
+    const serviceCard = event.target.closest("[data-service]");
+
+    if (serviceCard) {
+        selectedService = serviceCard.dataset.service;
+        goToPage("requestForm");
+    }
+});
+
+/* Search services */
+document.addEventListener("input", function(event) {
+    if (event.target.id === "serviceSearch") {
+        const term = event.target.value.toLowerCase();
+
+        const filtered = services.filter(service =>
+            (service.title + " " + service.description)
+                .toLowerCase().includes(term)
+        );
+
+        document.getElementById("serviceGrid").innerHTML =
+            serviceCards(filtered);
+    }
+
+    if (event.target.id === "announcementSearch") {
+        const term = event.target.value.toLowerCase();
+
+        const filtered = announcements.filter(a =>
+            (a.title + " " + a.description)
+                .toLowerCase().includes(term)
+        );
+
+        document.getElementById("announcementList").innerHTML =
+            announcementCards(filtered);
+    }
+
+    if (event.target.id === "requestSearch" ||
+        event.target.id === "statusFilter") {
+        filterRequests();
+    }
+});
+
+function filterRequests() {
+    const search = (
+        document.getElementById("requestSearch")?.value || ""
+    ).toLowerCase();
+
+    const status =
+        document.getElementById("statusFilter")?.value || "All";
+
+    const filtered = requests.filter(r => {
+        const matchesSearch =
+            (r.ref + r.title + r.purpose).toLowerCase().includes(search);
+
+        const matchesStatus =
+            status === "All" || r.status === status;
+
+        return matchesSearch && matchesStatus;
+    });
+
+    document.getElementById("requestList").innerHTML =
+        requestTable(filtered);
+}
+
+/* Submit document request */
+document.addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    if (event.target.id === "requestForm") {
+        const title = document.getElementById("serviceType").value;
+        const purpose = document.getElementById("purpose").value;
+
+        requests.unshift({
+            ref: "REQ-" + String(Date.now()).slice(-6),
+            title: title,
+            date: new Date().toLocaleDateString("en-US", {
+                year: "numeric",
+                month: "short",
+                day: "numeric"
+            }),
+            purpose: purpose,
+            status: "Submitted"
+        });
+
+        showToast("Your request was submitted successfully!");
+        goToPage("requests");
+    }
+
+    if (event.target.id === "appointmentForm") {
+        const date = document.getElementById("appointmentDate").value;
+        const time = document.getElementById("appointmentTime").value;
+        const purpose = document.getElementById("appointmentPurpose").value;
+
+        appointments.push({
+            date: date,
+            time: time,
+            purpose: purpose,
+            status: "Pending"
+        });
+
+        showToast("Appointment saved successfully!");
+        goToPage("appointments");
+    }
+
+    if (event.target.id === "profileForm") {
+        student.name = document.getElementById("studentName").value;
+        student.email = document.getElementById("studentEmail").value;
+        student.course = document.getElementById("studentCourse").value;
+        student.year = document.getElementById("studentYear").value;
+
+        showToast("Student information updated!");
+        goToPage("profile");
+    }
+});
+
+/* Start the application */
+renderPage();
+</script>
+
+</body>
+</html>
